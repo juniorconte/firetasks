@@ -1,0 +1,51 @@
+<h1>Firetasks</h1>
+
+<ul class="list-group">
+  <li class="list-group-item animate-repeat animate-show-hide"
+    ng-repeat="todo in todos"
+    ng-show="!todo.done || !hide">
+    {{todo.title}}
+    <input type="checkbox"
+      class="pull-right"
+      ng-model="todo.done"
+      ng-change="todos.$save(todo)">
+  </li>
+</ul>
+
+<div class="progress">
+  <div class="progress-bar" style="width: {{progress()}}%"></div>
+</div>
+
+<form ng-submit="addTodo(task); task = null">
+  <div class="input-group">
+    <input type="text"
+      class="form-control"
+      ng-model="task"
+      placeholder="Nova tarefa">
+    <span class="input-group-btn">
+      <button type="submit"
+        class="btn btn-default">
+        <i class="glyphicon glyphicon-plus-sign"></i>
+      </button>
+    </span>
+  </div>
+</form>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-6">
+    <button type="button"
+      class="btn btn-warning btn-block"
+      ng-click="hide = !hide">
+      {{hide && 'Exibir' || 'Esconder'}} concluídas
+    </button>
+  </div>
+  <div class="col-xs-6">
+    <button type="button"
+      class="btn btn-danger btn-block"
+      ng-click="clean()">
+      Remover concluídas
+    </button>
+  </div>
+</div>
