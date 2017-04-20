@@ -11,6 +11,7 @@
 angular
   .module('todoApp', [
     'ngAnimate',
+    'ngCookies',
     'ngRoute',
     'firebase'
   ])

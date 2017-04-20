@@ -8,11 +8,11 @@
  * Controller of the todoApp
  */
 angular.module('todoApp')
-  .controller('MainCtrl', function ($scope, $firebaseArray) {
+  .controller('MainCtrl', function ($scope, $firebaseArray, $cookies) {
 
     var ref = firebase.database().ref().child('todos');
 
-    $scope.hide = false;
+    $scope.hide = $cookies.get('hide') === 'true' || false;
     $scope.todos = $firebaseArray(ref);
 
     $scope.addTodo = function(title) {
@@ -34,6 +34,10 @@ angular.module('todoApp')
           $scope.todos.$remove(todo);
         }
       });
+    };
+
+    $scope.saveHide = function() {
+      $cookies.put('hide', $scope.hide);
     };
 
   });

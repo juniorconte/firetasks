@@ -6,7 +6,8 @@
     "bootstrap": "^3.2.0",
     "angular-animate": "^1.4.0",
     "angular-route": "^1.4.0",
-    "angularfire": "^2.3.0"
+    "angularfire": "^2.3.0",
+    "angular-cookies": "^1.6.4"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
