@@ -12,20 +12,14 @@ angular.module('todoApp')
 
     var ref = firebase.database().ref().child('todos');
 
-    $scope.hide = $cookies.get('hide') === 'true' || false;
     $scope.todos = $firebaseArray(ref);
+    $scope.hide = $cookies.get('hide') === 'true' || false;
 
     $scope.addTodo = function(title) {
       $scope.todos.$add({
         done: false,
         title: title
       });
-    };
-
-    $scope.progress = function() {
-      return $scope.todos.filter(function(todo) {
-        return todo.done;
-      }).length / $scope.todos.length * 100;
     };
 
     $scope.clean = function() {
@@ -36,8 +30,14 @@ angular.module('todoApp')
       });
     };
 
-    $scope.saveHide = function() {
-      $cookies.put('hide', $scope.hide);
+    $scope.progress = function() {
+      return $scope.todos.filter(function(todo) {
+        return todo.done;
+      }).length / $scope.todos.length * 100;
+    };
+
+    $scope.saveHide = function(hide) {
+      $cookies.put('hide', hide);
     };
 
   });
